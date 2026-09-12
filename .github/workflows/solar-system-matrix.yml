@@ -36,9 +36,12 @@ jobs:
         run: npm install
 
       - name: Unit Testing
+        id: nodejs-unit-testing-step 
         run: npm test
       
       - name: Archive Test Result
+        #https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#steps-context
+        if: steps.nodejs-unit-testing-step.outcome == 'failure' || steps.nodejs-unit-testing-step.outcome == 'success'
         uses: actions/upload-artifact@v7
         with:
           name: Mocha-Test-Result
@@ -60,7 +63,8 @@ jobs:
         run: npm install
 
       - name: Check Code Coverage
-        continue-on-error: true
+        #https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstepscontinue-on-error
+        continue-on-error: true #with this, in case of an error, it still shows successfull
         run: npm run coverage
 
       - name: Archive Test Result
