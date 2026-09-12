@@ -36,9 +36,10 @@ jobs:
         uses: actions/cache@v6
         id: npm-cache 
         with:
-          path: node-modules
+          path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
           #whenever the package-lock.json changes, we invalidate the caching
+          #in the first run, there will be no cache
 
       - name: Install Dependencies
         run: npm install
@@ -75,9 +76,10 @@ jobs:
         uses: actions/cache@v6
         id: npm-cache 
         with:
-          path: node-modules
+          path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
           #whenever the package-lock.json changes, we invalidate the caching
+          #in the first run, there will be no cache
 
       - name: Install Dependencies
         run: npm install
