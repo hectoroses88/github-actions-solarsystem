@@ -42,7 +42,9 @@ jobs:
       - name: Archive Test Result
         #https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#steps-context
         #https://docs.github.com/en/actions/reference/workflows-and-actions/expressions#status-check-functions
-        if: failure() && steps.nodejs-unit-testing-step.outcome == 'failure' || steps.nodejs-unit-testing-step.outcome == 'success'
+        #if: failure() && steps.nodejs-unit-testing-step.outcome == 'failure' || steps.nodejs-unit-testing-step.outcome == 'success'
+        #the previous conditions indicates this step to execute but not to mark the previous step as successful as it happens with the continue-on-error option
+        if: always()
         uses: actions/upload-artifact@v7
         with:
           name: Mocha-Test-Result
