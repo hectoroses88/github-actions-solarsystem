@@ -1,4 +1,4 @@
-name: Solar System Workflow Matrix, Job Container and Service Container
+name: Solar System Workflow Matrix, Job Container and Service Container Deploy
 
 on:
   workflow_dispatch:
@@ -205,3 +205,30 @@ jobs:
           kubectl version --short
           echo ----------------------------------------
           kubectl get nodes
+
+      - name: Set Kubeconfig
+        uses: azure/k8s-set-context@v5
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+          # context: <context name> # we only have one context, so no need to add it
+
+
+#I paste the kubeconfig file as a secret named KUBECONFIG in my repository
+# apiVersion: v1
+# kind: Config
+# preferences: {}
+
+# clusters:
+# - cluster:
+#     certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tLS0tCk1JSUMv... 
+#   name: lke136455
+
+# contexts:
+# - context:
+#     cluster: lke136455
+#     namespace: default
+#     user: lke136455-admin
+#   name: lke136455-ctx
+
+# current-context: lke136455-ctx
