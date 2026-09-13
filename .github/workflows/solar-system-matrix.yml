@@ -102,6 +102,7 @@ jobs:
     name: Containerization
     needs:  [unit-testing, code-coverage]
     permissions:
+      contents: read
       packages: write #to publish packages in github packages
     runs-on: ubuntu-latest
     steps:
