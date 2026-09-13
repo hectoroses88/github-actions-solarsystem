@@ -4,6 +4,7 @@ on:
   release:
     types: published #we need to create a new release to trigger it
 
+#https://docs.github.com/en/actions/tutorials/publish-packages/publish-nodejs-packages
 jobs:
   test-publish-package:
     runs-on: ubuntu-latest
