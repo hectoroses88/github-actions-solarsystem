@@ -101,6 +101,8 @@ jobs:
   docker:
     name: Containerization
     needs:  [unit-testing, code-coverage]
+    permissions:
+      packages: write #to publish packages in github packages
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
